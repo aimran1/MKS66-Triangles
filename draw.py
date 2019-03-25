@@ -55,10 +55,14 @@ def add_sphere(polygons, cx, cy, cz, r, step ):
                      points[index][0]+1,
                      points[index][1]+1,
                      points[index][2]+1 )
+    for i in range(len(polygons)):
+        add_polygon(polygons,
+                    polygons[i][0], polygons[i][1], polygons[i][2],
+                    polygons[i+1][0], polygons[i+1][1], polygons[i+1][2],
+                    polygons[i+2][0], polygons[i+2][1], polygons[i+2][2])
 
 def generate_sphere( cx, cy, cz, r, step ):
     points = []
-    circles
     rot_start = 0
     rot_stop = step
     circ_start = 0
@@ -75,7 +79,6 @@ def generate_sphere( cx, cy, cz, r, step ):
 
             points.append([x, y, z])
             #print 'rotation: %d\tcircle%d'%(rotation, circle)
-        circles.append(points)
     return points
 
 def add_torus(polygons, cx, cy, cz, r0, r1, step ):
