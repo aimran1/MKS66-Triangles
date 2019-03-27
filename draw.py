@@ -100,6 +100,10 @@ def add_torus(polygons, cx, cy, cz, r0, r1, step ):
             add_polygon(polygons, points[index][0], points[index][1], points[index][2],
                                   points[p2][0], points[p2][1], points[p2][2],
                                   points[p3][0], points[p3][1], points[p3][2])
+            p4 = (index+step+1)%len(points)
+            add_polygon(polygons, points[p2][0], points[p2][1], points[p2][2],
+                                  points[p4][0], points[p4][1], points[p4][2],
+                                  points[p3][0], points[p3][1], points[p3][2])
 
 def generate_torus( cx, cy, cz, r0, r1, step ):
     points = []
