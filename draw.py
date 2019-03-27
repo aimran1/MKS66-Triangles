@@ -15,7 +15,7 @@ def draw_polygons( polygons, screen, color ):
         draw_line(polygons[i][0], polygons[i][1], polygons[i+2][0], polygons[i+2][1], screen, color)
         draw_line(polygons[i+2][0], polygons[i+2][1], polygons[i+1][0], polygons[i+1][1], screen, color)
         i+=3
-        
+
 def add_box( polygons, x, y, z, width, height, depth ):
     x1 = x + width
     y1 = y - height
@@ -53,17 +53,11 @@ def add_sphere(polygons, cx, cy, cz, r, step ):
         for longt in range(longt_start, longt_stop+1):
             index = lat * step + longt
 
-            add_edge(polygons, points[index][0],
-                     points[index][1],
-                     points[index][2],
-                     points[index][0]+1,
-                     points[index][1]+1,
-                     points[index][2]+1 )
-    for i in range(len(polygons)):
-        add_polygon(polygons,
-                    polygons[i][0], polygons[i][1], polygons[i][2],
-                    polygons[i+1][0], polygons[i+1][1], polygons[i+1][2],
-                    polygons[i+2][0], polygons[i+2][1], polygons[i+2][2])
+            p2 = (index+1)%len(points)
+            p3 = (index+step)%len(points)
+            add_polygon(polygons, points[index][0], points[index][1], points[index][2],
+                                  points[p2][0], points[p2][1], points[p2][2],
+                                  points[p3][0], points[p3][1], points[p3][2])
 
 def generate_sphere( cx, cy, cz, r, step ):
     points = []
