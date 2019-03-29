@@ -6,24 +6,18 @@ def normal(ax,ay,bx,by):
     return ((ax*by) - (ay*bx))
 
 def add_polygon( polygons, x0, y0, z0, x1, y1, z1, x2, y2, z2 ):
-    add_edge(polygons,x0,y0,z0,x1,y1,z1)
-    add_edge(polygons,x1,y1,z1,x2,y2,z2)
-    add_edge(polygons,x2,y2,z2,x0,y0,z0)
+    if normal(z1-x0,y1-y0,x2-x0,y2-y0) > 0:
+        add_edge(polygons,x0,y0,z0,x1,y1,z1)
+        add_edge(polygons,x1,y1,z1,x2,y2,z2)
+        add_edge(polygons,x2,y2,z2,x0,y0,z0)
     return polygons
 
 def draw_polygons( polygons, screen, color ):
     i = 0
     while i < len(polygons) - 2:
-        print(polygons[i])
-        print(polygons[i+1])
-        print(polygons[i+2])
-        print("__________________________________________________________________")
-        n = normal(polygons[i+1][0]-polygons[i][0], polygons[i+1][1]-polygons[i][1],
-                   polygons[i+2][0]-polygons[i][0], polygons[i+2][1]-polygons[i][1])
-        if n == 0:
-            draw_line(int(polygons[i][0]), int(polygons[i][1]), int(polygons[i+1][0]), int(polygons[i+1][1]), screen, color)
-            draw_line(int(polygons[i][0]), int(polygons[i][1]), int(polygons[i+2][0]), int(polygons[i+2][1]), screen, color)
-            draw_line(int(polygons[i+2][0]), int(polygons[i+2][1]), int(polygons[i+1][0]), int(polygons[i+1][1]), screen, color)
+        draw_line(int(polygons[i][0]), int(polygons[i][1]), int(polygons[i+1][0]), int(polygons[i+1][1]), screen, color)
+        draw_line(int(polygons[i][0]), int(polygons[i][1]), int(polygons[i+2][0]), int(polygons[i+2][1]), screen, color)
+        draw_line(int(polygons[i+2][0]), int(polygons[i+2][1]), int(polygons[i+1][0]), int(polygons[i+1][1]), screen, color)
         i+=3
 
 def add_box( polygons, x, y, z, width, height, depth ):
