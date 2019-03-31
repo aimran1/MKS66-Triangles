@@ -27,23 +27,23 @@ def add_box( polygons, x, y, z, width, height, depth ):
     z1 = z - depth
 
     #Front
-    add_polygon(polygons, x, y, z, x1, y1, z, x1, y, z )
-    add_polygon(polygons, x, y, z, x, y1, z, x1, y1, z )
+    add_polygon(polygons, x1, y, z, x, y, z, x, y1, z)
+    add_polygon(polygons, x1, y, z, x, y1, z, x1, y1, z)
     #Back
-    add_polygon(polygons, x1, y, z1, x, y1, z1, x, y, z1 )
-    add_polygon(polygons, x1, y, z1, x1, y1, z1, x, y1, z1 )
+    add_polygon(polygons, x, y, z1, x1, y, z1, x, y1, z1)
+    add_polygon(polygons, x1, y, z1, x1, y1, z1, x, y1, z1)
     #Left
-    add_polygon(polygons, x, y, z1, x, y1, z, x, y, z )
-    add_polygon(polygons, x, y, z1, x, y1, z1, x, y1, z )
+    add_polygon(polygons, x, y, z, x, y, z1, x, y1, z1)
+    add_polygon(polygons, x, y, z, x, y1, z1, x, y1, z)
     #Right
-    add_polygon(polygons, x1, y, z, x1, y1, z1, x1, y, z1 )
-    add_polygon(polygons, x1, y, z, x1, y1, z, x1, y1, z1 )
+    add_polygon(polygons, x1, y, z1, x1, y, z, x1, y1, z1)
+    add_polygon(polygons, x1, y1, z1, x1, y, z, x1, y1, z)
     #Top
-    add_polygon(polygons, x1, y, z, x1, y, z1, x, y, z1 )
-    add_polygon(polygons, x1, y, z, x, y, z1, x1, y1, z1 )
+    add_polygon(polygons, x1, y, z1, x, y, z1, x1, y, z)
+    add_polygon(polygons, x1, y, z, x, y, z1, x, y, z)
     #Bottom
-    add_polygon(polygons, x, y1, z, x1, y1, z1, x1, y1, z )
-    add_polygon(polygons, x, y1, z, x, y1, z1, x1, y1, z1 )
+    add_polygon(polygons, x1, y1, z, x, y1, z, x1, y1, z1)
+    add_polygon(polygons, x1, y1, z1, x, y1, z, x, y1, z1)
 
 def add_sphere(polygons, cx, cy, cz, r, step ):
     points = generate_sphere(cx, cy, cz, r, step)
@@ -98,7 +98,7 @@ def add_torus(polygons, cx, cy, cz, r0, r1, step ):
 
     for lat in range(lat_start, lat_stop):
         for longt in range(longt_start, longt_stop):
-            index = lat * step + longt
+            index = lat * (step) + longt
 
             p2 = (index+1)%len(points)
             p3 = (index+step)%len(points)
